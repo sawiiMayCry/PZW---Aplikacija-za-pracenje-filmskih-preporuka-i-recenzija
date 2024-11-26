@@ -30,7 +30,7 @@ class UserMovie(models.Model):
     liked = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"User {self.user} likes Movie {self.movie} - Liked: {self.liked}"
+        return f"User '{self.user}', Movie '{self.movie}' - Liked: '{self.liked}'"
 
 
 class UserRecommendation(models.Model):
