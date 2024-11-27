@@ -1,4 +1,4 @@
-//sara ivankovic
+//sara ivankovic, rino tomic
 
 Stvoreni modeli za 
 filmove (Movies), 
