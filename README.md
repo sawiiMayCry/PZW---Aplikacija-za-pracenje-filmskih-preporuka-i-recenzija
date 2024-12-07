@@ -11,6 +11,7 @@ Baza podataka popunjena testnim podacima koristeći factory_boy.
 
 
 Projektni zadatak 1
+
 korisnici stvoreni koristeći factory_boy su preimenovani i postavljene su im nove lozinke
 
 ADMIN
