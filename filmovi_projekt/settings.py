@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_REDIRECT_URL = 'main/index'  # Preusmjerenje na početnu stranicu nakon prijave
+LOGOUT_REDIRECT_URL = 'main/login.html'  # Preusmjerenje na početnu stranicu nakon odjave
+
 
 # Application definition
 
@@ -55,7 +58,7 @@ ROOT_URLCONF = 'filmovi_projekt.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
