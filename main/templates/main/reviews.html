@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recenzije i Preporuke</title>
+</head>
+<body>
+    <h1>Recenzije</h1>
+    <a href="{% url 'main:logged_in' %}">Povratak na početnu stranicu</a>
+    <hr>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>{{ review.movie.title }}</strong><br>
+                    Korisnik: {{ review.user.username }}<br>
+                    Ocjena: <strong>{{ review.rating }} / 10</strong><br>
+                    Komentar: {{ review.comment }}
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nema recenzija u bazi.</p>
+    {% endif %}
+
+    <h1>Preporuke drugih korisnika</h1>
+    {% if movie_recommendations %}
+        <ul>
+            {% for recommendation in movie_recommendations %}
+                <li>
+                    <strong>{{ recommendation.movie.title }} by {{recommendation.user.username}}</strong> - 
+                    {{ recommendation.reason }}
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nemate specifičnih preporuka.</p>
+    {% endif %}
+
+    <br>
+    
+</body>
+</html>

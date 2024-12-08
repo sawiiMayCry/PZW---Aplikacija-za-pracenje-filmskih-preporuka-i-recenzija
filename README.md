@@ -35,3 +35,12 @@ korisnik5
 
 
 Za navedene korisnike omogućena je prijava i odjava.
+
+08.12.
+
+Omogućena prijava administratora sa početne stranice
+
+Sada se prilikom prijave ispisuje popis filmova, popis preporučenih filmova i popis "lajkanih" filmova.
+Na toj stranici se nalazi link za preporuke odnosno ostatak modela baze.
+
+

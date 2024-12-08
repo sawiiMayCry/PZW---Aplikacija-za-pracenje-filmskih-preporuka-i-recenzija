@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Movie, UserMovie, UserRecommendation, Review, MovieRecommendation
 
 # Create your views here.
     
@@ -33,4 +34,28 @@ def logged_in(request):
     Funkcionalnost za prikazivanje logged.html
     Samo prijavljeni korisnici mogu pristupiti ovoj stranici.
     """
-    return render(request, 'main/logged.html')
+    movies = Movie.objects.all()
+    liked_movies = UserMovie.objects.filter(user=request.user, liked=True).select_related('movie')
+    user_recommendations = UserRecommendation.objects.filter(user=request.user).select_related('movie')  # Preporuke za korisnika
+
+    return render(request, 'main/logged.html', {
+        'all_movies': movies,
+        'liked_movies': liked_movies,
+        'user_recommendations': user_recommendations,
+    }) 
+
+@login_required
+def reviews(request):
+    """
+    Dohvat svih recenzija i preporuka za trenutnog korisnika.
+    """
+    # Dohvati sve recenzije iz baze
+    reviews = Review.objects.all()
+    
+    # Dohvati sve preporuke za trenutnog korisnika
+    movie_recommendations = MovieRecommendation.objects.all()
+
+    return render(request, 'main/reviews.html', {
+        'reviews': reviews,
+        'movie_recommendations': movie_recommendations,
+    })

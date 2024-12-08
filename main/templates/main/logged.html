@@ -1,11 +1,66 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Dobrodošli!</title>
 </head>
+
 <body>
     <h1>Dobrodošli, {{ user.username }}!</h1>
     <p>Prijavljeni ste.</p>
     <a href="{% url 'main:logout_view' %}">Odjava</a>
+
+    <hr>
+
+    <a href="{% url 'main:reviews' %}">Pogledajte recenzije i preporuke</a><br>
+
+    <hr>
+    <br>
+
+    <h2>Popis filmova:</h2>
+    <ul>
+        {% for movie in all_movies %}
+        <li>
+            <strong>{{ movie.title }}</strong> ({{ movie.release_date|date:"Y" }})<br>
+            Žanr: {{ movie.genre }}<br>
+            Redatelj: {{ movie.director }}<br>
+            Opis: {{ movie.description }}
+            <br>
+            <br>
+        </li>
+        {% empty %}
+        <p>Nema dostupnih filmova u bazi podataka.</p>
+        {% endfor %}
+    </ul>
+
+    <h2>Preporučeni filmovi:</h2>
+    {% if user_recommendations %}
+    <ul>
+        {% for recommendation in user_recommendations %}
+        <li>
+            <strong>{{ recommendation.movie.title }}</strong> ({{ recommendation.movie.release_date|date:"Y" }}) -
+            {{ recommendation.movie.genre }}<br>
+            Razlog: {{ recommendation.reason }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Trenutno nema preporuka za vas.</p>
+    {% endif %}
+
+    <h2>Filmovi koji vam se sviđaju:</h2>
+    {% if liked_movies %}
+    <ul>
+        {% for user_movie in liked_movies %}
+        <li>{{ user_movie.movie.title }} ({{ user_movie.movie.release_date|date:"Y" }}) - {{ user_movie.movie.genre }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Nema lajkanih filmova.</p>
+    {% endif %}
+
+    
+
 </body>
+
 </html>
