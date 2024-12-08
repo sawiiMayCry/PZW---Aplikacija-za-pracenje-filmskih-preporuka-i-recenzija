@@ -17,14 +17,26 @@
                     Ocjena: <strong>{{ review.rating }} / 10</strong><br>
                     Komentar: {{ review.comment }}
                 </li>
-                <hr>
+                <br>
             {% endfor %}
         </ul>
     {% else %}
         <p>Nema recenzija u bazi.</p>
     {% endif %}
 
-    <h1>Preporuke drugih korisnika</h1>
+    <hr>
+
+
+    <h2>Unos recenzije</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <button type="submit" name="submit_review">Pošalji recenziju</button>
+    </form>
+
+    <hr>
+
+    <h1>Preporuke korisnika</h1>
     {% if movie_recommendations %}
         <ul>
             {% for recommendation in movie_recommendations %}
@@ -40,6 +52,17 @@
     {% endif %}
 
     <br>
+    <hr>
+
+    <h2>Unos preporuka</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ recommendation_form.as_p }}
+        <button type="submit" name="submit_recommendation">Pošalji preporuku</button>
+    </form>
+
+    <br>
+    <hr>
     
 </body>
 </html>
