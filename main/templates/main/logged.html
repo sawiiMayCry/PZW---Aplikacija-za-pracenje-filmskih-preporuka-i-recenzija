@@ -20,6 +20,23 @@
     <a href="{% url 'main:movie_list' %}">Pretraga filmova</a>
     <br>
     <br>
+    <hr>
+    <h2>Preporučeni filmovi:</h2>
+    {% if user_recommendations %}
+    <ul>
+        {% for recommendation in user_recommendations %}
+        <li>
+            <strong>{{ recommendation.movie.title }}</strong> ({{ recommendation.movie.release_date|date:"Y" }}) -
+            {{ recommendation.movie.genre }}<br>
+            Razlog: {{ recommendation.reason }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>Trenutno nema preporuka za vas.</p>
+    {% endif %}
+
+    <hr>
 
     <h2>Popis filmova:</h2>
     <ul>
@@ -37,26 +54,13 @@
         {% endfor %}
     </ul>
 
-    <h2>Preporučeni filmovi:</h2>
-    {% if user_recommendations %}
-    <ul>
-        {% for recommendation in user_recommendations %}
-        <li>
-            <strong>{{ recommendation.movie.title }}</strong> ({{ recommendation.movie.release_date|date:"Y" }}) -
-            {{ recommendation.movie.genre }}<br>
-            Razlog: {{ recommendation.reason }}
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>Trenutno nema preporuka za vas.</p>
-    {% endif %}
+    <hr>
 
     <h2>Filmovi koji vam se sviđaju:</h2>
     {% if liked_movies %}
     <ul>
         {% for user_movie in liked_movies %}
-        <li>{{ user_movie.movie.title }} ({{ user_movie.movie.release_date|date:"Y" }}) - {{ user_movie.movie.genre }}</li>
+        <li>{{ user_movie.movie.title }} ({{ user_movie.movie.release_date|date:"Y" }}) </li>
         {% endfor %}
     </ul>
     {% else %}

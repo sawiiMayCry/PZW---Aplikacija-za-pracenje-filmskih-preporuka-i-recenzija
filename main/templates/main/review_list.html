@@ -5,6 +5,11 @@
     <title>Popis Recenzija</title>
 </head>
 <body>
+    <br>
+    <hr>
+    <a href="{% url 'main:reviews' %}">Povratak</a><br>
+    <hr>
+
     <h1>Popis Recenzija</h1>
     <form method="get" action="{% url 'main:review_list' %}">
         <input type="text" name="user" placeholder="Pretraži po korisniku..." value="{{ request.GET.user }}">

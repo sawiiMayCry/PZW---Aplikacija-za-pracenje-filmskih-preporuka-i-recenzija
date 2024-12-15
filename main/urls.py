@@ -3,6 +3,7 @@ from . import views
 from .views import (
     MovieListView, MovieDetailView,
     ReviewListView, ReviewDetailView,
+    toggle_like,
 )
 
 app_name = 'main'  # here for namespacing of urls.
@@ -17,4 +18,5 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout_view'),
     path('logged/', views.logged_in, name='logged_in'),
     path('reviews/', views.reviews, name='reviews'),
+    path('toggle_like/<int:movie_id>/', toggle_like, name='toggle_like'),
 ]

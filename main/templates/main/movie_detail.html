@@ -5,11 +5,63 @@
     <title>{{ movie.title }}</title>
 </head>
 <body>
+    <br>
+    <hr>
+    <a href="{% url 'main:movie_list' %}">Povratak na popis</a>
+    <hr>
+    
     <h1>{{ movie.title }}</h1>
+    
     <p><strong>Žanr:</strong> {{ movie.genre }}</p>
     <p><strong>Datum izlaska:</strong> {{ movie.release_date }}</p>
     <p><strong>Redatelj:</strong> {{ movie.director }}</p>
     <p><strong>Opis:</strong> {{ movie.description }}</p>
-    <a href="{% url 'main:movie_list' %}">Povratak na popis</a>
+
+    {% if user.is_authenticated %}
+        <!-- Like gumb -->
+        <form method="post" action="{% url 'main:toggle_like' movie.id %}">
+            {% csrf_token %}
+            {% if liked %}
+                <button type="submit">Unlike</button>
+            {% else %}
+                <button type="submit">Like</button>
+            {% endif %}
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Prijavi se za lajkanje.</a></p>
+    {% endif %}
+    
+    <br>
+    <hr>
+    <h2>Recenzije</h2>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+                <li>
+                    <strong>Korisnik:</strong> {{ review.user.username }} <br>
+                    <strong>Ocjena:</strong> {{ review.rating }}/10 <br>
+                    <strong>Komentar:</strong> {{ review.comment }} <br>
+                    <strong>Datum:</strong> {{ review.created_at }}<br><br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nema recenzija za ovaj film.</p>
+    {% endif %}
+    <br>
+    <hr>
+    <h2>Preporuke za film</h2>
+    {% if movie_recommendations %}
+        <ul>
+            {% for rec in movie_recommendations %}
+                <li>
+                    <strong>Korisnik:</strong> {{ rec.user.username }} <br>
+                    <strong>Razlog:</strong> {{ rec.reason }}<br><br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nema preporuka za ovaj film.</p>
+    {% endif %}
 </body>
 </html>

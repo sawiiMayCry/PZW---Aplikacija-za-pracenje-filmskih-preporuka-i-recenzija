@@ -5,6 +5,10 @@
     <title>Popis Filmova</title>
 </head>
 <body>
+    <br>
+    <hr>
+    <a href="{% url 'main:logged_in' %}">Povratak</a>
+    <hr>
     <h1>Popis Filmova</h1>
     <form method="get" action="{% url 'main:movie_list' %}">
         <input type="text" name="q" placeholder="Pretraži filmove..." value="{{ request.GET.q }}">

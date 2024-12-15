@@ -47,3 +47,5 @@ Na toj stranici se nalazi link za preporuke odnosno ostatak modela baze.
 15.12.
 
 dodani listView, DetailView, pretraživanje filmova (po naslovu) i recenzija (po korisniku)
+
+dodano još testnih podataka, u admin sučelju promjenjeni passwordi i imena usera - korisnik6, korisnik7, korisnik8. Lozinke odgovaraju onima drugih korisnika

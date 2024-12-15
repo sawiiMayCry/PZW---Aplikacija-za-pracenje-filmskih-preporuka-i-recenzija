@@ -5,11 +5,21 @@
     <title>Detalji Recenzije</title>
 </head>
 <body>
+    <br>
+    <hr>
+    <a href="{% url 'main:review_list' %}">Povratak na popis recenzija</a>
+    <hr>
+
     <h1>Recenzija za "{{ review.movie.title }}"</h1>
     <p><strong>Korisnik:</strong> {{ review.user.username }}</p>
     <p><strong>Ocjena:</strong> {{ review.rating }}/10</p>
     <p><strong>Komentar:</strong> {{ review.comment }}</p>
     <p><strong>Datum:</strong> {{ review.created_at }}</p>
-    <a href="{% url 'main:review_list' %}">Povratak na popis recenzija</a>
+    <hr>
+    <h2>Detalji o filmu</h2>
+    <p><strong>Žanr:</strong> {{ review.movie.genre }}</p>
+    <p><strong>Datum izlaska:</strong> {{ review.movie.release_date }}</p>
+    <p><strong>Režiser:</strong> {{ review.movie.director }}</p>
+    <p><strong>Opis:</strong> {{ review.movie.description }}</p>
 </body>
 </html>
