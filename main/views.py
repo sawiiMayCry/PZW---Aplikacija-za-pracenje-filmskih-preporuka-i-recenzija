@@ -5,8 +5,50 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Movie, UserMovie, UserRecommendation, Review, MovieRecommendation
 from main.forms import ReviewForm, RecommendationForm
+from django.views.generic import ListView, DetailView
+from django.db.models import Q
 
 # Create your views here.
+
+# ListView za Movie s pretraživanjem
+class MovieListView(ListView):
+    model = Movie
+    template_name = 'main/movie_list.html'
+    context_object_name = 'movies'
+    paginate_by = 10  # Dodano za page
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('q', '')
+        if search_query:
+            queryset = queryset.filter(Q(title__icontains=search_query) | Q(genre__icontains=search_query))
+        return queryset
+
+# DetailView za Movie
+class MovieDetailView(DetailView):
+    model = Movie
+    template_name = 'main/movie_detail.html'
+    context_object_name = 'movie'
+
+# ListView za Review s pretraživanjem i filtriranjem po korisniku
+class ReviewListView(ListView):
+    model = Review
+    template_name = 'main/review_list.html'
+    context_object_name = 'reviews_detail'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        user_filter = self.request.GET.get('user', '')
+        if user_filter:
+            queryset = queryset.filter(user__username__icontains=user_filter)
+        return queryset
+
+# DetailView za Review
+class ReviewDetailView(DetailView):
+    model = Review
+    template_name = 'main/review_detail.html'
+    context_object_name = 'review'
+
     
 def index(request):
     return render(request, 'main/index.html')

@@ -8,21 +8,21 @@ class Command(BaseCommand):
     help = 'Sets up test data for the application'
 
     def handle(self, *args, **kwargs):
-        self.stdout.write('Deleting old data...')
+        #self.stdout.write('Deleting old data...')
         # Brisanje
-        UserMovie.objects.all().delete()
-        Review.objects.all().delete()
-        MovieRecommendation.objects.all().delete()
-        UserRecommendation.objects.all().delete()
-        Movie.objects.all().delete()
-        User.objects.all().delete()
+        #UserMovie.objects.all().delete()
+        #Review.objects.all().delete()
+        #MovieRecommendation.objects.all().delete()
+        #UserRecommendation.objects.all().delete()
+        #Movie.objects.all().delete()
+        #User.objects.all().delete()
 
         self.stdout.write('Creating new data...')
         
-        users = UserFactory.create_batch(5)
+        users = UserFactory.create_batch(3)
         
         
-        movies = MovieFactory.create_batch(5)
+        movies = MovieFactory.create_batch(20)
 
        
         for user in users:

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ movie.title }}</title>
+</head>
+<body>
+    <h1>{{ movie.title }}</h1>
+    <p><strong>Žanr:</strong> {{ movie.genre }}</p>
+    <p><strong>Datum izlaska:</strong> {{ movie.release_date }}</p>
+    <p><strong>Redatelj:</strong> {{ movie.director }}</p>
+    <p><strong>Opis:</strong> {{ movie.description }}</p>
+    <a href="{% url 'main:movie_list' %}">Povratak na popis</a>
+</body>
+</html>

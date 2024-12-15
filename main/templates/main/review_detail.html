@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalji Recenzije</title>
+</head>
+<body>
+    <h1>Recenzija za "{{ review.movie.title }}"</h1>
+    <p><strong>Korisnik:</strong> {{ review.user.username }}</p>
+    <p><strong>Ocjena:</strong> {{ review.rating }}/10</p>
+    <p><strong>Komentar:</strong> {{ review.comment }}</p>
+    <p><strong>Datum:</strong> {{ review.created_at }}</p>
+    <a href="{% url 'main:review_list' %}">Povratak na popis recenzija</a>
+</body>
+</html>

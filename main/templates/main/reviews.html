@@ -8,6 +8,10 @@
     <h1>Recenzije</h1>
     <a href="{% url 'main:logged_in' %}">Povratak na početnu stranicu</a>
     <hr>
+    <br>
+    <a href="{% url 'main:review_list' %}">Pretraga recenzija</a>
+    <br>
+    <br>
     {% if reviews %}
         <ul>
             {% for review in reviews %}

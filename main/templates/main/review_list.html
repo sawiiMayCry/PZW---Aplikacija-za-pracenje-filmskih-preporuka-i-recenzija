@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Popis Recenzija</title>
+</head>
+<body>
+    <h1>Popis Recenzija</h1>
+    <form method="get" action="{% url 'main:review_list' %}">
+        <input type="text" name="user" placeholder="Pretraži po korisniku..." value="{{ request.GET.user }}">
+        <button type="submit">Filtriraj</button>
+    </form>
+    <ul>
+        {% for review in reviews_detail %}
+            <li>
+                <a href="{% url 'main:review_detail' review.pk %}">{{ review.movie.title }}</a> - {{ review.user.username }}: {{ review.rating }}/10
+            </li>
+        {% endfor %}
+    </ul>
+    {% if not reviews_detail %}
+        <p>Nema dostupnih recenzija.</p>
+    {% endif %}
+</body>
+</html>

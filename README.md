@@ -44,3 +44,6 @@ Sada se prilikom prijave ispisuje popis filmova, popis preporučenih filmova i p
 Na toj stranici se nalazi link za preporuke odnosno ostatak modela baze.
 
 
+15.12.
+
+dodani listView, DetailView, pretraživanje filmova (po naslovu) i recenzija (po korisniku)
