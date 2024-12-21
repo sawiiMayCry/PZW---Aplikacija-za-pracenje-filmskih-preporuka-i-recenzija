@@ -55,6 +55,9 @@ omogućeno "lajkanje" filmova ulogiranim korisnicima.
 21.12.
 
 C - dodavanje recenzija i preporuka putem forme postoji od prije
+
 R - pretraživanju filmova dodano filtriranje
+
 U - napravljeno ažuriranje recenzija i preporuka koje je napisao korisnik.
+
 D - Dodano brisanje recenzija i preporuka koje je korisnik stvorio.
