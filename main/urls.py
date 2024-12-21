@@ -3,7 +3,7 @@ from . import views
 from .views import (
     MovieListView, MovieDetailView,
     ReviewListView, ReviewDetailView,
-    toggle_like,
+    toggle_like, ReviewUpdateView, MovieRecommendationUpdateView, MovieRecommendationDetailView
 )
 
 app_name = 'main'  # here for namespacing of urls.
@@ -19,4 +19,9 @@ urlpatterns = [
     path('logged/', views.logged_in, name='logged_in'),
     path('reviews/', views.reviews, name='reviews'),
     path('toggle_like/<int:movie_id>/', toggle_like, name='toggle_like'),
+    path('reviews/update/<int:pk>/', ReviewUpdateView.as_view(), name='review_update'),
+    path('recommendations/update/<int:pk>/', MovieRecommendationUpdateView.as_view(), name='movie_recommendation_update'),
+    path('recommendations/<int:pk>/', MovieRecommendationDetailView.as_view(), name='movie_recommendation_detail'),
+    path('reviews/delete/<int:pk>/', views.ReviewDeleteView.as_view(), name='review_delete'),
+    path('recommendations/delete/<int:pk>/', views.MovieRecommendationDeleteView.as_view(), name='movie_recommendation_delete'),
 ]

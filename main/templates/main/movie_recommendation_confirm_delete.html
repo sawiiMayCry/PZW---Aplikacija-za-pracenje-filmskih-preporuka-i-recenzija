@@ -1,0 +1,8 @@
+<h1>Potvrdite brisanje preporuke</h1>
+<p>Želite li zaista obrisati ovu preporuku?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Da, obriši preporuku</button>
+    <a href="{% url 'main:reviews' %}">Odustani</a>
+</form>

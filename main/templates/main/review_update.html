@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ažuriraj recenziju</title>
+</head>
+<body>
+    <h1>Ažuriraj recenziju za "{{ review.movie.title }}"</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Spremi promjene</button>
+    </form>
+    <br>
+    <a href="{% url 'main:review_detail' review.pk %}">Povratak na detalje recenzije</a>
+</body>
+</html>

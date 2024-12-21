@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ažuriraj preporuku</title>
+</head>
+<body>
+    <h1>Ažuriraj preporuku za "{{ recommendation.movie.title }}"</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Spremi promjene</button>
+    </form>
+    <br>
+    <a href="{% url 'main:movie_recommendation_detail' recommendation.pk %}">Detalji preporuke</a>
+</body>
+</html>

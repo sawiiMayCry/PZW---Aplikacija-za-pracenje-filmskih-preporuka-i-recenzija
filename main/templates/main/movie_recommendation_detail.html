@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalji Preporuke</title>
+</head>
+<body>
+    <h1>Preporuka za film: {{ recommendation.movie.title }}</h1>
+    <p><strong>Korisnik:</strong> {{ recommendation.user.username }}</p>
+    <p><strong>Razlog preporuke:</strong> {{ recommendation.reason }}</p>
+    <p><strong>Film:</strong> {{ recommendation.movie.title }}</p>
+    <a href="{% url 'main:reviews' %}">Povratak na popis recenzija i preporuka</a> <br>
+    <br>
+    {% if user == recommendation.user %} <!-- Provjera da li je korisnik vlasnik preporuke -->
+        <a href="{% url 'main:movie_recommendation_update' recommendation.pk %}">Ažuriraj preporuku</a>
+    {% endif %}
+</body>
+</html>

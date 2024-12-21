@@ -19,7 +19,13 @@
                     <strong>{{ review.movie.title }}</strong><br>
                     Korisnik: {{ review.user.username }}<br>
                     Ocjena: <strong>{{ review.rating }} / 10</strong><br>
-                    Komentar: {{ review.comment }}
+                    Komentar: {{ review.comment }}<br>
+                    {% if user == review.user %} <!-- Provjera da li je korisnik vlasnik recenzije -->
+                         <a href="{% url 'main:review_update' pk=review.pk %}">Ažuriraj</a>
+                    {% endif %}
+                    {% if review.user == user %}
+                      |  <a href="{% url 'main:review_delete' pk=review.pk %}">Obriši recenziju</a>
+                    {% endif %}
                 </li>
                 <br>
             {% endfor %}
@@ -39,14 +45,21 @@
     </form>
 
     <hr>
-
+    
     <h1>Preporuke korisnika</h1>
     {% if movie_recommendations %}
         <ul>
             {% for recommendation in movie_recommendations %}
                 <li>
                     <strong>{{ recommendation.movie.title }} by {{recommendation.user.username}}</strong> - 
-                    {{ recommendation.reason }}
+                    {{ recommendation.reason }}<br>
+                    {% if user == recommendation.user %} <!-- Provjera da li je korisnik vlasnik preporuke -->
+                        <a href="{% url 'main:movie_recommendation_update' recommendation.pk %}">Ažuriraj preporuku</a>
+                    {% endif %}
+                    {% if recommendation.user == user %}
+                       | <a href="{% url 'main:movie_recommendation_delete' pk=recommendation.pk %}">Obriši preporuku</a>
+                    {% endif %}
+                    
                 </li>
                 <br>
             {% endfor %}
@@ -54,7 +67,7 @@
     {% else %}
         <p>Nemate specifičnih preporuka.</p>
     {% endif %}
-
+    
     <br>
     <hr>
 

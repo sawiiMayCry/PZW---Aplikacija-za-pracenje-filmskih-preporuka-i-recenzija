@@ -13,7 +13,17 @@
     <form method="get" action="{% url 'main:movie_list' %}">
         <input type="text" name="q" placeholder="Pretraži filmove..." value="{{ request.GET.q }}">
         <button type="submit">Pretraži</button>
+        <select name="genre">
+            <option value="">Svi žanrovi</option>
+            {% for genre in genres %}
+                <option value="{{ genre }}" {% if request.GET.genre == genre %}selected{% endif %}>
+                    {{ genre }}
+                </option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filtriraj</button>
     </form>
+    
     <ul>
         {% for movie in movies %}
             <li>

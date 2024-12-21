@@ -51,3 +51,10 @@ dodani listView, DetailView, pretraživanje filmova (po naslovu) i recenzija (po
 dodano još testnih podataka, u admin sučelju promjenjeni passwordi i imena usera - korisnik6, korisnik7, korisnik8. Lozinke odgovaraju onima drugih korisnika.
 
 omogućeno "lajkanje" filmova ulogiranim korisnicima.
+
+21.12.
+
+C - dodavanje recenzija i preporuka putem forme postoji od prije
+R - pretraživanju filmova dodano filtriranje
+U - napravljeno ažuriranje recenzija i preporuka koje je napisao korisnik.
+D - Dodano brisanje recenzija i preporuka koje je korisnik stvorio.

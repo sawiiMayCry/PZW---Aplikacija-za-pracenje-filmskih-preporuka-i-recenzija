@@ -5,10 +5,68 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .models import Movie, UserMovie, UserRecommendation, Review, MovieRecommendation
 from main.forms import ReviewForm, RecommendationForm
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic.edit import UpdateView
 from django.db.models import Q
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
+
+# Brisanje preporuka
+class MovieRecommendationDeleteView(LoginRequiredMixin, DeleteView):
+    model = MovieRecommendation
+    template_name = 'main/movie_recommendation_confirm_delete.html'
+    context_object_name = 'recommendation'
+    success_url = reverse_lazy('main:reviews')  # Preusmjeravanje na popis preporuka nakon brisanja
+
+    def get_queryset(self):
+        # samo korisnici koji su dali preporuku mogu je obrisati
+        return self.model.objects.filter(user=self.request.user)
+
+
+# Brisanje recenzija
+class ReviewDeleteView(LoginRequiredMixin, DeleteView):
+    model = Review
+    template_name = 'main/review_confirm_delete.html'
+    context_object_name = 'review'
+    success_url = reverse_lazy('main:review_list')  # Preusmjeravanje na popis recenzija nakon brisanja
+
+    def get_queryset(self):
+        # samo korisnici koji su napisali recenziju mogu je obrisati
+        return self.model.objects.filter(user=self.request.user)
+    
+
+class MovieRecommendationUpdateView(UpdateView):
+    model = MovieRecommendation
+    template_name = 'main/movie_recommendation_update.html'
+    fields = ['reason']  # Polje koje korisnik može ažurirati
+    context_object_name = 'recommendation'
+
+    def test_func(self):
+        # Provjera da li je korisnik vlasnik recenzije
+        return self.request.user == self.get_object().user
+
+
+    def get_success_url(self):
+        # Preusmjeravanje na DetailView ažuriranog objekta
+        return reverse('main:movie_recommendation_detail', kwargs={'pk': self.object.pk})
+
+class ReviewUpdateView(UpdateView):
+    model = Review
+    template_name = 'main/review_update.html'
+    fields = ['rating', 'comment']  # Polja koja korisnik može ažurirati
+    
+
+    def test_func(self):
+        # Provjera da li je korisnik vlasnik recenzije
+        return self.request.user == self.get_object().user
+
+    def get_success_url(self):
+        # Preusmjeravanje na DetailView ažuriranog objekta
+        return reverse('main:review_detail', kwargs={'pk': self.object.pk})
+    
+
 
 # ListView za Movie s pretraživanjem
 class MovieListView(ListView):
@@ -19,9 +77,19 @@ class MovieListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         search_query = self.request.GET.get('q', '')
+        genre_filter = self.request.GET.get('genre', '')
         if search_query:
-            queryset = queryset.filter(Q(title__icontains=search_query) | Q(genre__icontains=search_query))
+            queryset = queryset.filter(
+                Q(title__icontains=search_query) | Q(genre__icontains=search_query)
+            )
+        if genre_filter:
+            queryset = queryset.filter(genre__icontains=genre_filter)
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['genres'] = Movie.objects.values_list('genre', flat=True).distinct()
+        return context
 
 # DetailView za Movie
 class MovieDetailView(DetailView):
@@ -56,7 +124,7 @@ class ReviewListView(ListView):
             queryset = queryset.filter(user__username__icontains=user_filter)
         return queryset
 
-# DetailView za Review
+# DetailView za recenzije
 class ReviewDetailView(DetailView):
     model = Review
     template_name = 'main/review_detail.html'
@@ -65,6 +133,12 @@ class ReviewDetailView(DetailView):
     
 def index(request):
     return render(request, 'main/index.html')
+
+#DetailView za preporuke
+class MovieRecommendationDetailView(DetailView):
+    model = MovieRecommendation
+    template_name = 'main/movie_recommendation_detail.html'
+    context_object_name = 'recommendation'
 
 # pogled za login
 def login_view(request):

@@ -19,6 +19,12 @@
         {% for review in reviews_detail %}
             <li>
                 <a href="{% url 'main:review_detail' review.pk %}">{{ review.movie.title }}</a> - {{ review.user.username }}: {{ review.rating }}/10
+                {% if user == review.user %} <!-- Provjera da li je korisnik vlasnik recenzije -->
+                    | <a href="{% url 'main:review_update' pk=review.pk %}">Ažuriraj</a>
+                {% endif %}
+                {% if review.user == user %}
+                      |  <a href="{% url 'main:review_delete' pk=review.pk %}">Obriši recenziju</a>
+                    {% endif %}
             </li>
         {% endfor %}
     </ul>
