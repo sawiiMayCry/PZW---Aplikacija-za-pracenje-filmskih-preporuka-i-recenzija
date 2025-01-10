@@ -1,4 +1,7 @@
 //sara ivankovic
+Aplikacija za praćenje filmskih preporuka i recenzija
+
+Aplikacija omogućava pregled filmovai recenzija te unos, ažuriranje i brisanje istih.
 
 Stvoreni modeli za 
 filmove (Movies), 
