@@ -72,10 +72,15 @@ omogućen REST API za GET, POST, GET po ID-u i DELETE po ID-u za ulogiranog kori
 omogućen dohvat svih instanci modela Movie
 
 GET /api/reviews/
+
 POST /api/reviews/
-GET /api/reviews/<id>/
-PUT /api/reviews/<id>/
-DELETE /api/reviews/<id>/
+
+GET /api/reviews/id/
+
+PUT /api/reviews/id/
+
+DELETE /api/reviews/id/
+
 
 
 GET /api/movies
