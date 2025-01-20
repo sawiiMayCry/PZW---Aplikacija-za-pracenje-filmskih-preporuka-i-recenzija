@@ -70,3 +70,12 @@ D - Dodano brisanje recenzija i preporuka koje je korisnik stvorio.
 omogućen REST API za GET, POST, GET po ID-u i DELETE po ID-u za ulogiranog korisnika nad modelom Review odnosno nad recenzijama.
 
 omogućen dohvat svih instanci modela Movie
+
+GET /api/reviews/
+POST /api/reviews/
+GET /api/reviews/<id>/
+PUT /api/reviews/<id>/
+DELETE /api/reviews/<id>/
+
+
+GET /api/movies
