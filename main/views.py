@@ -10,8 +10,35 @@ from django.views.generic.edit import UpdateView
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from .serializers import ReviewSerializer
+from rest_framework.generics import ListAPIView
+from .serializers import MovieSerializer
 
 # Create your views here.
+
+class MovieListAPIView(ListAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+    permission_classes = [IsAuthenticated]  
+
+
+class ReviewViewSet(viewsets.ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
+
+    """ Za prikazivanje samo komentara ulogiranog korisnika
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+    """
+    
+
+    def perform_create(self, serializer):
+        # Automatski postavljamo korisnika kao autora recenzije
+        serializer.save(user=self.request.user)
+
 
 # Brisanje preporuka
 class MovieRecommendationDeleteView(LoginRequiredMixin, DeleteView):

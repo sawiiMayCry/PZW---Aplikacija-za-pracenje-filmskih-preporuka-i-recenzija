@@ -64,3 +64,9 @@ R - pretraživanju filmova dodano filtriranje
 U - napravljeno ažuriranje recenzija i preporuka koje je napisao korisnik.
 
 D - Dodano brisanje recenzija i preporuka koje je korisnik stvorio.
+
+20.1.
+
+omogućen REST API za GET, POST, GET po ID-u i DELETE po ID-u za ulogiranog korisnika nad modelom Review odnosno nad recenzijama.
+
+omogućen dohvat svih instanci modela Movie
