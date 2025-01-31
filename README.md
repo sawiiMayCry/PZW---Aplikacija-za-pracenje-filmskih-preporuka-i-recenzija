@@ -82,5 +82,8 @@ PUT /api/reviews/id/
 DELETE /api/reviews/id/
 
 
-
 GET /api/movies
+
+
+31.1.
+napravljeno testiranje modela, url-ova i pogleda.
