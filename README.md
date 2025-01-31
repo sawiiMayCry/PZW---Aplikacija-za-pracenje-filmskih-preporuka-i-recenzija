@@ -87,3 +87,4 @@ GET /api/movies
 
 31.1.
 napravljeno testiranje modela, url-ova i pogleda.
+python .\manage.py test .\main\tests\
