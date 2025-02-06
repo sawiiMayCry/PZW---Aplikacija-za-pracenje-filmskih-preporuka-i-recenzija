@@ -90,3 +90,8 @@ GET /api/movies
 napravljeno testiranje modela, url-ova i pogleda.
 
 python .\manage.py test .\main\tests\
+
+
+05.02.
+
+napravljen dizajn koristeći 6 css datoteka

@@ -2,25 +2,20 @@
 <html>
 
 <head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style2.css' %}">
     <title>Dobrodošli!</title>
 </head>
 
 <body>
     <h1>Dobrodošli, {{ user.username }}!</h1>
     <p>Prijavljeni ste.</p>
-    <a href="{% url 'main:logout_view' %}">Odjava</a>
-
-    <hr>
-
-    <a href="{% url 'main:reviews' %}">Pogledajte recenzije i preporuke</a><br>
-
-    <hr>
-    <br>
-
-    <a href="{% url 'main:movie_list' %}">Pretraga filmova</a>
-    <br>
-    <br>
-    <hr>
+    <div class="button-container">
+        <a href="{% url 'main:movie_list' %}">Pretraga filmova</a>
+        <a href="{% url 'main:reviews' %}">Pogledajte recenzije i preporuke</a>
+        <a href="{% url 'main:logout_view' %}">Odjava</a>
+    </div>
+    
     <h2>Preporučeni filmovi:</h2>
     {% if user_recommendations %}
     <ul>

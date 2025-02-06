@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style3.css' %}">
     <title>Popis Filmova</title>
 </head>
 <body>
     <br>
-    <hr>
-    <a href="{% url 'main:logged_in' %}">Povratak</a>
-    <hr>
+    
+    <a class="povratak" href="{% url 'main:logged_in' %}">Povratak</a>
+    
     <h1>Popis Filmova</h1>
     <form method="get" action="{% url 'main:movie_list' %}">
         <input type="text" name="q" placeholder="Pretraži filmove..." value="{{ request.GET.q }}">

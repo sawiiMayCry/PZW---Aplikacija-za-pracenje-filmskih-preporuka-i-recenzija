@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style3.css' %}">
     <title>Popis Recenzija</title>
 </head>
 <body>
     <br>
-    <hr>
-    <a href="{% url 'main:reviews' %}">Povratak</a><br>
-    <hr>
-
+   
+    <a class="povratak" href="{% url 'main:reviews' %}">Povratak</a><br>
+   
     <h1>Popis Recenzija</h1>
     <form method="get" action="{% url 'main:review_list' %}">
         <input type="text" name="user" placeholder="Pretraži po korisniku..." value="{{ request.GET.user }}">
@@ -20,10 +21,10 @@
             <li>
                 <a href="{% url 'main:review_detail' review.pk %}">{{ review.movie.title }}</a> - {{ review.user.username }}: {{ review.rating }}/10
                 {% if user == review.user %} <!-- Provjera da li je korisnik vlasnik recenzije -->
-                    | <a href="{% url 'main:review_update' pk=review.pk %}">Ažuriraj</a>
+                     <a class="botun" href="{% url 'main:review_update' pk=review.pk %}">Ažuriraj</a>
                 {% endif %}
                 {% if review.user == user %}
-                      |  <a href="{% url 'main:review_delete' pk=review.pk %}">Obriši recenziju</a>
+                        <a class="botun" href="{% url 'main:review_delete' pk=review.pk %}">Obriši recenziju</a>
                     {% endif %}
             </li>
         {% endfor %}

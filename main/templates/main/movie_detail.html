@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style5.css' %}">
     <title>{{ movie.title }}</title>
 </head>
 <body>
@@ -22,7 +24,7 @@
         <form method="post" action="{% url 'main:toggle_like' movie.id %}">
             {% csrf_token %}
             {% if liked %}
-                <button type="submit">Unlike</button>
+                <button class="unlike" type="submit">Unlike</button>
             {% else %}
                 <button type="submit">Like</button>
             {% endif %}

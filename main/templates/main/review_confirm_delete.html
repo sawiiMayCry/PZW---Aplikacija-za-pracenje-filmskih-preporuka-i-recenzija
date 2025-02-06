@@ -1,8 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style3.css' %}">
+    <title>Detalji Recenzije</title>
+</head>
+<body>
+
 <h1>Potvrdite brisanje recenzije</h1>
 <p>Želite li zaista obrisati ovu recenziju?</p>
 
 <form method="post">
     {% csrf_token %}
-    <button type="submit">Da, obriši recenziju</button>
+    <button class="brisanje" type="submit">Da, obriši recenziju</button>
+    <br>
     <a href="{% url 'main:reviews' %}">Odustani</a>
 </form>
+
+</body>

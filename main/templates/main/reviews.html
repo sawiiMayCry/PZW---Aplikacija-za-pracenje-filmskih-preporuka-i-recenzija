@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style4.css' %}">
     <title>Recenzije i Preporuke</title>
 </head>
 <body>
     <h1>Recenzije</h1>
-    <a href="{% url 'main:logged_in' %}">Povratak na početnu stranicu</a>
-    <hr>
-    <br>
-    <a href="{% url 'main:review_list' %}">Pretraga recenzija</a>
-    <br>
-    <br>
+    <div class="button-container">
+        <a href="{% url 'main:logged_in' %}">Povratak na početnu stranicu</a>
+        <a href="{% url 'main:review_list' %}">Pretraga recenzija</a>
+    </div>
+    
+    
     {% if reviews %}
         <ul>
             {% for review in reviews %}
@@ -24,7 +26,7 @@
                          <a href="{% url 'main:review_update' pk=review.pk %}">Ažuriraj</a>
                     {% endif %}
                     {% if review.user == user %}
-                      |  <a href="{% url 'main:review_delete' pk=review.pk %}">Obriši recenziju</a>
+                        <a href="{% url 'main:review_delete' pk=review.pk %}">Obriši recenziju</a>
                     {% endif %}
                 </li>
                 <br>
@@ -57,7 +59,7 @@
                         <a href="{% url 'main:movie_recommendation_update' recommendation.pk %}">Ažuriraj preporuku</a>
                     {% endif %}
                     {% if recommendation.user == user %}
-                       | <a href="{% url 'main:movie_recommendation_delete' pk=recommendation.pk %}">Obriši preporuku</a>
+                        <a href="{% url 'main:movie_recommendation_delete' pk=recommendation.pk %}">Obriši preporuku</a>
                     {% endif %}
                     
                 </li>

@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+
+h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+
+a {
+    display: inline-block;
+    color: #800080;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+a:hover {
+    color: #530053;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+form input[type="text"],
+form select,
+form button {
+    padding: 10px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form input[type="text"],
+form select {
+    width: 250px;
+}
+
+form button {
+    background-color: #800080;
+    color: white;
+    cursor: pointer;
+    width: 150px;
+    border: none;
+}
+
+form button:hover {
+    background-color: #530053;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    width: 80%;
+    max-width: 800px;
+}
+
+ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #800080;
+}
+
+ul li a:hover {
+    color: #530053;
+}
+
+
+p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+
+
+.povratak {
+    display: inline-block;
+    background-color: #800080; 
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-align: center;
+    margin: 10px 0;
+    transition: background-color 0.3s ease; 
+}
+
+
+.povratak:hover {
+    background-color: #4B0082; 
+    color: white;
+}
+
+
+
+.botun {
+    display: inline-block;
+    background-color: #800080;
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px; 
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 0.9em; 
+    text-align: center;
+}
+
+.botun:hover{
+    background-color: #4B0082; 
+    color: white;
+}
+
+.brisanje {
+    display: inline-block;
+    background-color: #e74c3c; 
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;  
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 1.1em;  
+    text-align: center;
+    width: auto;  
+}
+
+
+.brisanje:hover {
+    background-color: #c0392b;
+}
